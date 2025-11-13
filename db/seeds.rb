@@ -69,13 +69,20 @@ puts "Created #{Album.count} albums from CSV"
 
 # Data Source 2: Additional artists via Faker
 puts "\nGenerating additional artists with Faker..."
-10.times do
-  Artist.create!(
-    name: Faker::Music.band,
-    country: Faker::Address.country,
-    formed_year: rand(1960..2023),
-    biography: Faker::Lorem.paragraph(sentence_count: 4)
-  )
+created_count = 0
+attempts = 0
+while created_count < 10 && attempts < 50
+  begin
+    Artist.create!(
+      name: "#{Faker::Music.band} #{rand(1000..9999)}",
+      country: Faker::Address.country,
+      formed_year: rand(1960..2023),
+      biography: Faker::Lorem.paragraph(sentence_count: 4)
+    )
+    created_count += 1
+  rescue ActiveRecord::RecordInvalid
+    attempts += 1
+  end
 end
 
 puts "Total artists: #{Artist.count}"
