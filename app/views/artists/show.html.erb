@@ -1,2 +1,58 @@
-<h1>Artists#show</h1>
-<p>Find me in app/views/artists/show.html.erb</p>
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= @artist.name %></h1>
+    
+    <div class="card mt-3">
+      <div class="card-body">
+        <% if @artist.country %>
+          <p><strong>Country:</strong> <%= @artist.country %></p>
+        <% end %>
+        
+        <% if @artist.formed_year %>
+          <p><strong>Formed:</strong> <%= @artist.formed_year %></p>
+        <% end %>
+        
+        <% if @artist.biography %>
+          <p><strong>Biography:</strong></p>
+          <p><%= @artist.biography %></p>
+        <% end %>
+      </div>
+    </div>
+    
+    <h3 class="mt-4">Albums (<%= @artist.albums.count %>)</h3>
+    <% if @artist.albums.any? %>
+      <div class="row">
+        <% @artist.albums.each do |album| %>
+          <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to album.title, album_path(album) %></h5>
+                <% if album.release_date %>
+                  <p class="card-text"><small class="text-muted">Released: <%= album.release_date.year %></small></p>
+                <% end %>
+                <% if album.popularity_score %>
+                  <p class="card-text">
+                    <span class="badge bg-primary">Popularity: <%= album.popularity_score %>/100</span>
+                  </p>
+                <% end %>
+                <% if album.genres.any? %>
+                  <p class="card-text">
+                    <% album.genres.each do |genre| %>
+                      <%= link_to genre.name, genre_path(genre), class: "badge bg-secondary" %>
+                    <% end %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-muted">No albums found for this artist.</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-4">
+  <%= link_to "← Back to Artists", artists_path, class: "btn btn-secondary" %>
+</div>

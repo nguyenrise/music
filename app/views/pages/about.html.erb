@@ -1,2 +1,102 @@
-<h1>Pages#about</h1>
-<p>Find me in app/views/pages/about.html.erb</p>
+<div class="row">
+  <div class="col-md-12">
+    <h1>About This Project</h1>
+    <hr>
+    
+    <h2>Data Sources</h2>
+    <p>This music database application integrates data from multiple sources to provide comprehensive music information:</p>
+    
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-header bg-primary text-white">
+            <h5>1. CSV File</h5>
+          </div>
+          <div class="card-body">
+            <p><strong>Source:</strong> Custom compiled CSV dataset</p>
+            <p><strong>Data Type:</strong> Album and artist information</p>
+            <p><strong>Contains:</strong> 50 classic and popular albums with release dates, popularity scores, and artist details</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-header bg-success text-white">
+            <h5>2. Faker Gem (Artists)</h5>
+          </div>
+          <div class="card-body">
+            <p><strong>Source:</strong> Ruby Faker gem</p>
+            <p><strong>Data Type:</strong> Additional artist profiles</p>
+            <p><strong>Contains:</strong> Generated artist biographies, countries, and formation years</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-header bg-info text-white">
+            <h5>3. Faker Gem (Reviews)</h5>
+          </div>
+          <div class="card-body">
+            <p><strong>Source:</strong> Ruby Faker gem</p>
+            <p><strong>Data Type:</strong> User reviews and ratings</p>
+            <p><strong>Contains:</strong> <%= Review.count %> reviews with ratings (1-5 stars), reviewer names, and comments</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h2 class="mt-4">Database Structure</h2>
+    <p>The database consists of <%= Artist.count %> artists, <%= Album.count %> albums, <%= Genre.count %> genres, and <%= Review.count %> reviews.</p>
+    
+    <h3>Relationships</h3>
+    <ul>
+      <li><strong>One-to-Many:</strong> Artists → Albums (each artist can have multiple albums)</li>
+      <li><strong>One-to-Many:</strong> Albums → Reviews (each album can have multiple reviews)</li>
+      <li><strong>Many-to-Many:</strong> Albums ↔ Genres (albums can belong to multiple genres)</li>
+    </ul>
+    
+    <h2 class="mt-4">Features</h2>
+    <ul>
+      <li>Browse all albums with pagination</li>
+      <li>Search albums by title or artist name</li>
+      <li>Filter albums by genre (hierarchical search)</li>
+      <li>View detailed album information including reviews</li>
+      <li>Explore artists and their discographies</li>
+      <li>Navigate genres and discover related albums</li>
+      <li>Responsive Bootstrap-based design</li>
+      <li>Valid HTML5 markup</li>
+    </ul>
+    
+    <h2 class="mt-4">Database Statistics</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="alert alert-primary">
+          <h4><%= Artist.count %></h4>
+          <p>Artists</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="alert alert-success">
+          <h4><%= Album.count %></h4>
+          <p>Albums</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="alert alert-info">
+          <h4><%= Genre.count %></h4>
+          <p>Genres</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="alert alert-warning">
+          <h4><%= Review.count %></h4>
+          <p>Reviews</p>
+        </div>
+      </div>
+    </div>
+    
+    <%= link_to "Back to Home", root_path, class: "btn btn-primary mt-3" %>
+  </div>
+</div>

@@ -1,2 +1,57 @@
-<h1>Albums#index</h1>
-<p>Find me in app/views/albums/index.html.erb</p>
+<h1>Albums</h1>
+
+<%= form_with url: search_albums_path, method: :get, class: "mb-4" do |f| %>
+  <div class="row g-3">
+    <div class="col-md-5">
+      <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Search by album or artist name..." %>
+    </div>
+    <div class="col-md-4">
+      <%= f.select :genre_id, options_for_select([["All Genres", ""]] + Genre.order(:name).pluck(:name, :id), params[:genre_id]), {}, class: "form-select" %>
+    </div>
+    <div class="col-md-3">
+      <%= f.submit "Search", class: "btn btn-primary w-100" %>
+    </div>
+  </div>
+<% end %>
+
+<% if @albums.present? %>
+  <p class="text-muted"><%= @albums.total_count %> album(s) found</p>
+  
+  <div class="row">
+    <% @albums.each do |album| %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to album.title, album_path(album) %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <%= link_to album.artist.name, artist_path(album.artist) %>
+            </h6>
+            <% if album.release_date %>
+              <p class="card-text"><small class="text-muted">Released: <%= album.release_date.year %></small></p>
+            <% end %>
+            <% if album.popularity_score %>
+              <p class="card-text">
+                <span class="badge bg-primary">Popularity: <%= album.popularity_score %>/100</span>
+              </p>
+            <% end %>
+            <% if album.genres.any? %>
+              <p class="card-text">
+                <% album.genres.each do |genre| %>
+                  <%= link_to genre.name, genre_path(genre), class: "badge bg-secondary" %>
+                <% end %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @albums %>
+  </div>
+<% else %>
+  <div class="alert alert-info">
+    No albums found. <%= link_to "View all albums", albums_path, class: "alert-link" %>
+  </div>
+<% end %>

@@ -1,2 +1,44 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="jumbotron bg-light p-5 rounded">
+      <h1 class="display-4">Welcome to Music Database</h1>
+      <p class="lead">Explore our collection of <%= Album.count %> albums from <%= Artist.count %> artists across <%= Genre.count %> genres.</p>
+      <hr class="my-4">
+      <p>Search through our comprehensive music database, discover new artists, and read reviews from music enthusiasts.</p>
+      <%= link_to "Browse Albums", albums_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "View Artists", artists_path, class: "btn btn-secondary btn-lg" %>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">📀 Albums</h5>
+        <p class="card-text">Browse our collection of <%= Album.count %> albums with ratings and reviews.</p>
+        <%= link_to "View All Albums", albums_path, class: "btn btn-outline-primary" %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">🎤 Artists</h5>
+        <p class="card-text">Discover <%= Artist.count %> artists from around the world.</p>
+        <%= link_to "View All Artists", artists_path, class: "btn btn-outline-primary" %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">🎵 Genres</h5>
+        <p class="card-text">Explore <%= Genre.count %> different music genres and categories.</p>
+        <%= link_to "View All Genres", genres_path, class: "btn btn-outline-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

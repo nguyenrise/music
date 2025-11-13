@@ -1,2 +1,28 @@
-<h1>Artists#index</h1>
-<p>Find me in app/views/artists/index.html.erb</p>
+<h1>Artists</h1>
+
+<p class="text-muted"><%= @artists.total_count %> artist(s) found</p>
+
+<div class="row">
+  <% @artists.each do |artist| %>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to artist.name, artist_path(artist) %></h5>
+          <% if artist.country %>
+            <p class="card-text"><small class="text-muted">📍 <%= artist.country %></small></p>
+          <% end %>
+          <% if artist.formed_year %>
+            <p class="card-text"><small class="text-muted">📅 Formed: <%= artist.formed_year %></small></p>
+          <% end %>
+          <p class="card-text">
+            <span class="badge bg-info"><%= artist.albums.count %> album(s)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @artists %>
+</div>

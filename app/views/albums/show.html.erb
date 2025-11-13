@@ -1,2 +1,69 @@
-<h1>Albums#show</h1>
-<p>Find me in app/views/albums/show.html.erb</p>
+<div class="row">
+  <div class="col-md-8">
+    <h1><%= @album.title %></h1>
+    <h3 class="text-muted">by <%= link_to @album.artist.name, artist_path(@album.artist) %></h3>
+    
+    <div class="card mt-3">
+      <div class="card-body">
+        <% if @album.release_date %>
+          <p><strong>Release Date:</strong> <%= @album.release_date.strftime("%B %d, %Y") %></p>
+        <% end %>
+        
+        <% if @album.popularity_score %>
+          <p><strong>Popularity Score:</strong> <%= @album.popularity_score %>/100</p>
+        <% end %>
+        
+        <% if @album.genres.any? %>
+          <p>
+            <strong>Genres:</strong>
+            <% @album.genres.each do |genre| %>
+              <%= link_to genre.name, genre_path(genre), class: "badge bg-secondary" %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    
+    <h3 class="mt-4">Reviews (<%= @album.reviews.count %>)</h3>
+    <% if @album.reviews.any? %>
+      <% @album.reviews.each do |review| %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title"><%= review.reviewer_name %></h5>
+              <span class="badge bg-warning text-dark">
+                <%= "⭐" * review.rating %> <%= review.rating %>/5
+              </span>
+            </div>
+            <p class="card-text"><%= review.comment %></p>
+            <p class="text-muted"><small><%= review.review_date.strftime("%B %d, %Y") if review.review_date %></small></p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-muted">No reviews yet.</p>
+    <% end %>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>Artist Info</h5>
+      </div>
+      <div class="card-body">
+        <h6><%= link_to @album.artist.name, artist_path(@album.artist) %></h6>
+        <% if @album.artist.country %>
+          <p><strong>Country:</strong> <%= @album.artist.country %></p>
+        <% end %>
+        <% if @album.artist.formed_year %>
+          <p><strong>Formed:</strong> <%= @album.artist.formed_year %></p>
+        <% end %>
+        <%= link_to "View All Albums by #{@album.artist.name}", artist_path(@album.artist), class: "btn btn-sm btn-outline-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4">
+  <%= link_to "← Back to Albums", albums_path, class: "btn btn-secondary" %>
+</div>
