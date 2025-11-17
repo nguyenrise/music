@@ -27,17 +27,14 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <%= link_to "Music Database", root_path, class: "navbar-brand" %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <%= link_to "MUSIC", root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: 1px solid white;">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <%= link_to "Home", root_path, class: "nav-link" %>
-            </li>
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
               <%= link_to "Albums", albums_path, class: "nav-link" %>
             </li>
@@ -76,14 +73,16 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h5>Music Database</h5>
-            <p>A comprehensive database of albums, artists, and genres.</p>
+            <h5>MUSIC</h5>
+            <p style="font-weight: 300;">Database of albums, artists, and genres</p>
           </div>
           <div class="col-md-6 text-end">
-            <p>Rails Intro Project - <%= Date.current.year %></p>
+            <p style="font-weight: 300;">Rails Intro Project — <%= Date.current.year %></p>
             <p>
-              <%= link_to "Home", root_path, class: "text-white me-3" %> |
-              <%= link_to "About", about_path, class: "text-white ms-3" %>
+              <%= link_to "Albums", albums_path, class: "text-white me-3" %>
+              <%= link_to "Artists", artists_path, class: "text-white me-3" %>
+              <%= link_to "Genres", genres_path, class: "text-white me-3" %>
+              <%= link_to "About", about_path, class: "text-white" %>
             </p>
           </div>
         </div>

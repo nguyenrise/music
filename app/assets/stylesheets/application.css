@@ -9,26 +9,365 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
-/* Custom styles for Music Database */
+/* Minimalistic Black & White Design */
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --gray-dark: #1a1a1a;
+  --gray-medium: #333333;
+  --gray-light: #e0e0e0;
+  --gray-border: #cccccc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--white);
+  color: var(--black);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
 }
 
-.jumbotron {
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
 }
 
-.card {
-  transition: transform 0.2s;
+h1 {
+  font-size: 3rem;
+  font-weight: 200;
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+h2 {
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Navigation */
+.navbar {
+  background-color: var(--black) !important;
+  border-bottom: 2px solid var(--black);
+  padding: 1rem 0;
 }
 
 .navbar-brand {
-  font-weight: bold;
+  color: var(--white) !important;
+  font-weight: 200;
   font-size: 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+.nav-link {
+  color: var(--white) !important;
+  font-weight: 300;
+  margin: 0 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+  opacity: 0.6;
+}
+
+/* Cards */
+.card {
+  background-color: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-title a {
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+
+.card-title a:hover {
+  border-bottom: 2px solid var(--black);
+}
+
+.card-subtitle,
+.card-text small {
+  color: var(--gray-medium);
+}
+
+.card-header {
+  background-color: var(--black);
+  color: var(--white);
+  border-bottom: none;
+  font-weight: 300;
+  padding: 1rem 1.5rem;
+}
+
+/* Jumbotron */
+.jumbotron {
+  background-color: var(--white);
+  border: 2px solid var(--black);
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.jumbotron .display-4 {
+  font-weight: 200;
+  font-size: 3.5rem;
+}
+
+.jumbotron .lead {
+  font-weight: 300;
+  color: var(--gray-medium);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 0;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+  border: 2px solid var(--black);
+}
+
+.btn-primary {
+  background-color: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.btn-secondary {
+  background-color: var(--white);
+  border-color: var(--black);
+  color: var(--black);
+}
+
+.btn-secondary:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.btn-outline-primary {
+  background-color: var(--white);
+  border-color: var(--black);
+  color: var(--black);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.btn-lg {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+}
+
+.btn-sm {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* Badges */
+.badge {
+  border-radius: 0;
+  font-weight: 400;
+  padding: 0.4rem 0.8rem;
+  margin-right: 0.5rem;
+  border: 1px solid var(--black);
+}
+
+.badge.bg-primary,
+.badge.bg-success,
+.badge.bg-info,
+.badge.bg-secondary {
+  background-color: var(--black) !important;
+  color: var(--white);
+}
+
+.badge.bg-warning {
+  background-color: var(--white) !important;
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+/* Alerts */
+.alert {
+  border-radius: 0;
+  border: 2px solid var(--black);
+}
+
+.alert-success {
+  background-color: var(--white);
+  color: var(--black);
+  border-color: var(--black);
+}
+
+.alert-danger {
+  background-color: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+.alert-info,
+.alert-primary,
+.alert-warning {
+  background-color: var(--gray-light);
+  color: var(--black);
+  border-color: var(--black);
+}
+
+/* Forms */
+.form-control,
+.form-select {
+  border-radius: 0;
+  border: 2px solid var(--black);
+  padding: 0.75rem 1rem;
+  font-weight: 300;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--black);
+  box-shadow: none;
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--black);
+  color: var(--white);
+  margin-top: 5rem;
+  padding: 3rem 0;
+  border-top: 2px solid var(--black);
+}
+
+footer h5 {
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+footer a {
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+
+footer a:hover {
+  border-bottom: 1px solid var(--white);
+}
+
+/* Links */
+a {
+  color: var(--black);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+a:hover {
+  opacity: 0.6;
+  color: var(--black);
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 2rem;
+}
+
+.page-link {
+  color: var(--black);
+  background-color: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 0;
+  margin: 0 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.page-link:hover {
+  background-color: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+.page-item.active .page-link {
+  background-color: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+}
+
+/* Text utilities */
+.text-muted {
+  color: var(--gray-medium) !important;
+}
+
+/* HR */
+hr {
+  border: none;
+  border-top: 1px solid var(--black);
+  margin: 2rem 0;
+}
+
+/* Minimalist spacing */
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mt-5 {
+  margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .jumbotron .display-4 {
+    font-size: 2.5rem;
+  }
 }

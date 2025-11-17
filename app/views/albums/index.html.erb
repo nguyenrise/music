@@ -1,9 +1,9 @@
 <h1>Albums</h1>
 
-<%= form_with url: search_albums_path, method: :get, class: "mb-4" do |f| %>
+<%= form_with url: search_albums_path, method: :get, class: "mb-5" do |f| %>
   <div class="row g-3">
     <div class="col-md-5">
-      <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Search by album or artist name..." %>
+      <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Search albums or artists..." %>
     </div>
     <div class="col-md-4">
       <%= f.select :genre_id, options_for_select([["All Genres", ""]] + Genre.order(:name).pluck(:name, :id), params[:genre_id]), {}, class: "form-select" %>
@@ -15,7 +15,7 @@
 <% end %>
 
 <% if @albums.present? %>
-  <p class="text-muted"><%= @albums.total_count %> album(s) found</p>
+  <p class="text-muted" style="font-weight: 300; margin-bottom: 2rem;"><%= @albums.total_count %> albums</p>
   
   <div class="row">
     <% @albums.each do |album| %>
@@ -23,15 +23,15 @@
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title"><%= link_to album.title, album_path(album) %></h5>
-            <h6 class="card-subtitle mb-2 text-muted">
+            <h6 class="card-subtitle mb-3 text-muted" style="font-weight: 300;">
               <%= link_to album.artist.name, artist_path(album.artist) %>
             </h6>
             <% if album.release_date %>
-              <p class="card-text"><small class="text-muted">Released: <%= album.release_date.year %></small></p>
+              <p class="card-text" style="font-weight: 300;"><small class="text-muted"><%= album.release_date.year %></small></p>
             <% end %>
             <% if album.popularity_score %>
               <p class="card-text">
-                <span class="badge bg-primary">Popularity: <%= album.popularity_score %>/100</span>
+                <span class="badge bg-primary"><%= album.popularity_score %></span>
               </p>
             <% end %>
             <% if album.genres.any? %>
