@@ -49,14 +49,14 @@ csv_data.each do |row|
     a.formed_year = rand(1950..2020)
     a.biography = Faker::Lorem.paragraph(sentence_count: 3)
   end
-  
+
   album = Album.create!(
     title: row['album_title'],
     release_date: Date.parse(row['release_date']),
     popularity_score: row['popularity_score'].to_i,
     artist: artist
   )
-  
+
   # Assign 1-3 random genres to each album
   rand(1..3).times do
     genre = genres.sample
@@ -114,4 +114,3 @@ puts "Album-Genre associations: #{AlbumGenre.count}"
 puts "Reviews: #{Review.count}"
 puts "Total rows: #{Artist.count + Album.count + Genre.count + AlbumGenre.count + Review.count}"
 puts "="*50
-

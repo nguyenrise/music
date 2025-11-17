@@ -4,7 +4,7 @@ module AlbumsHelper
     avg = album.reviews.average(:rating).to_f
     "#{avg.round(1)}/5.0"
   end
-  
+
   def popularity_badge_class(score)
     return "bg-secondary" unless score
     if score >= 90
