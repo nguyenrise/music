@@ -42,3 +42,24 @@
     </div>
   </div>
 </div>
+
+<% if Album.popular.any? %>
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h2>Popular Albums</h2>
+      <div class="row">
+        <% Album.popular.limit(3).each do |album| %>
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to album.title, album_path(album) %></h5>
+                <p class="card-text text-muted"><%= album.artist.name %></p>
+                <span class="badge bg-success">Popularity: <%= album.popularity_score %>/100</span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
