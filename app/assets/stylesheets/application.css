@@ -268,31 +268,6 @@ h3 {
   outline-offset: 2px;
 }
 
-/* Footer */
-footer {
-  background-color: var(--black);
-  color: var(--white);
-  margin-top: 5rem;
-  padding: 3rem 0;
-  border-top: 2px solid var(--black);
-}
-
-footer h5 {
-  font-weight: 300;
-  margin-bottom: 1rem;
-}
-
-footer a {
-  color: var(--white);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-bottom 0.3s ease;
-}
-
-footer a:hover {
-  border-bottom: 1px solid var(--white);
-}
-
 /* Links */
 a {
   color: var(--black);
@@ -315,7 +290,7 @@ a:hover {
   background-color: var(--white);
   border: 1px solid var(--black);
   border-radius: 0;
-  margin: 0 0.25rem;
+  margin: 0 0.5rem;
   padding: 0.5rem 1rem;
 }
 
@@ -329,6 +304,10 @@ a:hover {
   background-color: var(--black);
   border-color: var(--black);
   color: var(--white);
+}
+
+.page-item {
+  margin: 0 0.25rem;
 }
 
 /* Container */
